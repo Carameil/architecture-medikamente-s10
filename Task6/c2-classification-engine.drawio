@@ -1,0 +1,191 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="29.2.1">
+  <diagram name="C2 - Data Classification Engine" id="c2-classification-engine">
+    <mxGraphModel dx="1425" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" value="&lt;b&gt;C2 Container Diagram: Data Classification Engine&lt;/b&gt;&lt;br&gt;Движок классификации данных перед загрузкой в хранилище" vertex="1">
+          <mxGeometry height="40" width="500" x="400" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_sources" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;dashed=1;" value="&lt;b&gt;Источники данных&lt;/b&gt;&lt;br&gt;[External Systems]&lt;br&gt;&lt;br&gt;1C, Excel, API,&lt;br&gt;Лаборатория" vertex="1">
+          <mxGeometry height="100" width="140" x="100" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="engine_boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1565C0;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="700" width="700" x="300" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="engine_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=14;fontColor=#1565C0;" value="&lt;b&gt;Data Classification Engine&lt;/b&gt;&lt;br&gt;[Container: Kubernetes Cluster]" vertex="1">
+          <mxGeometry height="40" width="300" x="310" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="batch_ingestion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcedc8;strokeColor=#689f38;" value="&lt;b&gt;Batch Ingestion&lt;/b&gt;&lt;br&gt;[Component: Kafka Connect]&lt;br&gt;&lt;br&gt;Приём пакетных данных&lt;br&gt;из источников" vertex="1">
+          <mxGeometry height="90" width="150" x="320" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="schema_detector" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbdefb;strokeColor=#1976d2;" value="&lt;b&gt;Schema Detector&lt;/b&gt;&lt;br&gt;[Component: Spark Job]&lt;br&gt;&lt;br&gt;Анализ структуры,&lt;br&gt;обнаружение новых полей" vertex="1">
+          <mxGeometry height="90" width="150" x="520" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="pattern_matcher" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbdefb;strokeColor=#1976d2;" value="&lt;b&gt;Pattern Matcher&lt;/b&gt;&lt;br&gt;[Component: Spark Job]&lt;br&gt;&lt;br&gt;Поиск паттернов:&lt;br&gt;PII, PHI, Financial&lt;br&gt;(Regex + словари)" vertex="1">
+          <mxGeometry height="90" width="150" x="720" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="ml_classifier" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1bee7;strokeColor=#8e24aa;" value="&lt;b&gt;ML Classifier&lt;/b&gt;&lt;br&gt;[Component: TensorFlow]&lt;br&gt;&lt;br&gt;NLP-классификация&lt;br&gt;неструктурированных&lt;br&gt;данных" vertex="1">
+          <mxGeometry height="90" width="150" x="720" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="tag_repo" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;" value="&lt;b&gt;Tag Repository&lt;/b&gt;&lt;br&gt;[Component: Apache Atlas]&lt;br&gt;&lt;br&gt;Хранение тегов,&lt;br&gt;метаданных, lineage" vertex="1">
+          <mxGeometry height="90" width="150" x="520" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="policy_engine" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#e53935;" value="&lt;b&gt;Policy Engine&lt;/b&gt;&lt;br&gt;[Component: OPA]&lt;br&gt;&lt;br&gt;Применение политик&lt;br&gt;защиты по тегам" vertex="1">
+          <mxGeometry height="90" width="150" x="320" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="tjd3z22zFD-QByYSjvrm-1" edge="1" parent="1" source="router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.632;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#000000,#009900);" target="dw_boundary" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="595" y="420" />
+              <mxPoint x="1050" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tjd3z22zFD-QByYSjvrm-2" connectable="0" parent="tjd3z22zFD-QByYSjvrm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Classified&lt;br&gt;data&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1909" y="-1" as="geometry">
+            <mxPoint x="-81" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="router" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#43a047;" value="&lt;b&gt;Data Router&lt;/b&gt;&lt;br&gt;[Component: Airflow DAG]&lt;br&gt;&lt;br&gt;Маршрутизация данных&lt;br&gt;в слои хранилища" vertex="1">
+          <mxGeometry height="90" width="150" x="520" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="encryption" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#e53935;" value="&lt;b&gt;Encryption Service&lt;/b&gt;&lt;br&gt;[Component: Vault]&lt;br&gt;&lt;br&gt;Шифрование полей&lt;br&gt;AES-256, токенизация" vertex="1">
+          <mxGeometry height="90" width="150" x="320" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="metrics" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b2ebf2;strokeColor=#00838f;" value="&lt;b&gt;Metrics Collector&lt;/b&gt;&lt;br&gt;[Component: Prometheus]&lt;br&gt;&lt;br&gt;Сбор метрик:&lt;br&gt;Precision, Recall,&lt;br&gt;Latency, Throughput" vertex="1">
+          <mxGeometry height="90" width="150" x="720" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="audit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b2ebf2;strokeColor=#00838f;" value="&lt;b&gt;Audit Logger&lt;/b&gt;&lt;br&gt;[Component: ELK Stack]&lt;br&gt;&lt;br&gt;Логирование всех&lt;br&gt;операций классификации" vertex="1">
+          <mxGeometry height="90" width="150" x="720" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="ref_data" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;" value="&lt;b&gt;Reference Data&lt;/b&gt;&lt;br&gt;[Component: PostgreSQL]&lt;br&gt;&lt;br&gt;Паттерны, словари,&lt;br&gt;правила классификации" vertex="1">
+          <mxGeometry height="90" width="150" x="320" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="dw_boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="380" width="180" x="1050" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dw_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontColor=#666666;" value="&lt;b&gt;Data Warehouse&lt;/b&gt;&lt;br&gt;[External Storage]" vertex="1">
+          <mxGeometry height="30" width="180" x="1050" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="raw_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d7ccc8;strokeColor=#795548;fontSize=10;" value="&lt;b&gt;Raw Layer&lt;/b&gt;&lt;br&gt;(Bronze)&lt;br&gt;Сырые данные" vertex="1">
+          <mxGeometry height="60" width="140" x="1070" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="classified_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfd8dc;strokeColor=#607d8b;fontSize=10;" value="&lt;b&gt;Classified Layer&lt;/b&gt;&lt;br&gt;(Silver)&lt;br&gt;С тегами" vertex="1">
+          <mxGeometry height="60" width="140" x="1070" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="sensitive_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;strokeColor=#e53935;fontSize=10;" value="&lt;b&gt;Sensitive Layer&lt;/b&gt;&lt;br&gt;(Gold-S)&lt;br&gt;PHI, PII — шифр." vertex="1">
+          <mxGeometry height="60" width="140" x="1070" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="analytics_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#43a047;fontSize=10;" value="&lt;b&gt;Analytics Layer&lt;/b&gt;&lt;br&gt;(Gold-A)&lt;br&gt;Обезличенные" vertex="1">
+          <mxGeometry height="60" width="140" x="1070" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="public_layer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#81c784;fontSize=10;" value="&lt;b&gt;Public Layer&lt;/b&gt;&lt;br&gt;(Gold-P)&lt;br&gt;Агрегаты" vertex="1">
+          <mxGeometry height="50" width="140" x="1070" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="arr1" edge="1" parent="1" source="ext_sources" style="endArrow=classic;html=1;strokeColor=#333333;" target="batch_ingestion" value="Batch data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr2" edge="1" parent="1" source="batch_ingestion" style="endArrow=classic;html=1;strokeColor=#333333;" target="schema_detector" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr3" edge="1" parent="1" source="schema_detector" style="endArrow=classic;html=1;strokeColor=#333333;" target="pattern_matcher" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr4" edge="1" parent="1" source="schema_detector" style="endArrow=classic;html=1;strokeColor=#8e24aa;dashed=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="ml_classifier" value="Новые поля">
+          <mxGeometry relative="1" x="-0.0009" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr5" edge="1" parent="1" source="pattern_matcher" style="endArrow=classic;html=1;strokeColor=#fb8c00;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="tag_repo" value="Теги">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr6" edge="1" parent="1" source="ml_classifier" style="endArrow=classic;html=1;strokeColor=#fb8c00;" target="tag_repo" value="Теги">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr7" edge="1" parent="1" source="tag_repo" style="endArrow=classic;html=1;strokeColor=#333333;" target="policy_engine" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr8" edge="1" parent="1" source="policy_engine" style="endArrow=classic;html=1;strokeColor=#333333;" target="encryption" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr9" edge="1" parent="1" source="encryption" style="endArrow=classic;html=1;strokeColor=#333333;" target="router" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr10" edge="1" parent="1" source="ref_data" style="endArrow=classic;html=1;strokeColor=#fb8c00;dashed=1;entryX=0.996;entryY=0.672;entryDx=0;entryDy=0;entryPerimeter=0;" target="pattern_matcher" value="Паттерны">
+          <mxGeometry relative="1" x="-0.4353" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="395" y="720" />
+              <mxPoint x="920" y="720" />
+              <mxPoint x="920" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr11" edge="1" parent="1" source="router" style="endArrow=classic;html=1;strokeColor=#00838f;" target="metrics" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr12" edge="1" parent="1" source="router" style="endArrow=classic;html=1;strokeColor=#00838f;" target="audit" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;" value="" vertex="1">
+          <mxGeometry height="200" width="180" x="100" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;" value="&lt;b&gt;Легенда&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="180" x="100" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;html=1;fillColor=#dcedc8;strokeColor=#689f38;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Ingestion" vertex="1">
+          <mxGeometry height="18" width="100" x="135" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="rounded=1;html=1;fillColor=#bbdefb;strokeColor=#1976d2;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Analysis &amp; Detection" vertex="1">
+          <mxGeometry height="18" width="120" x="135" y="608" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=1;html=1;fillColor=#e1bee7;strokeColor=#8e24aa;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="ML Classification" vertex="1">
+          <mxGeometry height="18" width="100" x="135" y="628" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="rounded=1;html=1;fillColor=#fff3e0;strokeColor=#fb8c00;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Metadata &amp; Tags" vertex="1">
+          <mxGeometry height="18" width="100" x="135" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" parent="1" style="rounded=1;html=1;fillColor=#ffcdd2;strokeColor=#e53935;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Security" vertex="1">
+          <mxGeometry height="18" width="100" x="135" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" parent="1" style="rounded=1;html=1;fillColor=#c8e6c9;strokeColor=#43a047;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Routing" vertex="1">
+          <mxGeometry height="18" width="100" x="135" y="688" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7" parent="1" style="rounded=1;html=1;fillColor=#b2ebf2;strokeColor=#00838f;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="leg7t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Monitoring &amp; Audit" vertex="1">
+          <mxGeometry height="18" width="120" x="135" y="708" as="geometry" />
+        </mxCell>
+        <mxCell id="leg8" parent="1" style="rounded=1;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="15" width="20" x="110" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="leg8t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="External Systems" vertex="1">
+          <mxGeometry height="18" width="120" x="135" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="flow_desc" parent="1" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=left;verticalAlign=top;fontSize=10;rounded=1;" value="&lt;b&gt;Data Flow:&lt;/b&gt;&lt;br&gt;1. Batch Ingestion получает данные&lt;br&gt;2. Schema Detector анализирует структуру&lt;br&gt;3. Pattern Matcher ищет PII/PHI/Financial&lt;br&gt;4. ML Classifier обрабатывает новые поля&lt;br&gt;5. Tag Repository сохраняет теги&lt;br&gt;6. Policy Engine применяет политики&lt;br&gt;7. Encryption шифрует чувствительные поля&lt;br&gt;8. Router направляет в нужный слой DW" vertex="1">
+          <mxGeometry height="160" width="220" x="60" y="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
